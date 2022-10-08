@@ -5,6 +5,8 @@
     Next, the program builds the BST and displays the result in 3 different orders: Pre-Order, In-Order, and Post-Order. 
     The program will then display a horizontal visual representation of the BST to the user.
     Finally, the program looks for the user-defined, k-th smallest element in the BST and outputs the result to the user.
+    
+    Data Structure: Binary Search Tree, Classes
 */
 
 #include <iostream>
