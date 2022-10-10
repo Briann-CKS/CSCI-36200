@@ -19,6 +19,9 @@ void preorderBST(Node* node);
 void inorderBST(Node* node);
 void postorderBST(Node* node);
 
+// Function declaration for finding the k-th smallest element by in-order traversal
+Node* traverseTree(int k, Node* root);
+
 // Function declaration for sorting a user-defined array
 int* sortArray(int* arr, int n);
 
@@ -75,9 +78,9 @@ int main()
     }
     else
     {
-        // Integer k is the index of the k-th element in the sorted array
-        int answer = sortedArray[k-1];
-        cout << "The " << k << "-th smallest element in the BST is " << answer << ".\n" << endl;
+        // Integer k is the k-th smallest value in the binary search tree
+        Node* answer = traverseTree(k, root);
+        cout << "The " << k << "-th smallest element in the BST is " << answer->value << ".\n" << endl;
     }
 
     return 0;
@@ -131,6 +134,28 @@ void postorderBST(Node* node)
     postorderBST(node->left);
     postorderBST(node->right);
     cout << node->value << " ";
+}
+
+int counter = 0;
+// Traverse Tree to find the k-th smallest element
+Node* traverseTree(int k, Node* root)
+{
+    if (root == NULL)
+        return NULL;
+
+    // Traversing through the very left leave node
+    Node* lnode = traverseTree(k, root->left);
+    if (lnode != NULL)
+        return lnode;
+
+    // Increment counter to keep track of the number of times the program explores the node
+    counter ++;
+
+    // If counter is the same as the integer k, then that is the answer for the k-th smallest element
+    if (k == counter)
+        return root;
+
+    return traverseTree(k, root->right);
 }
 
 // Function declaration for sorting the user-defined array using either Insertion sort, Bubble sort, or Selection sort
